@@ -1,0 +1,23 @@
+{
+	"name": "hook",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite build --mode development",
+		"build": "vite build",
+		"test": "vite build --mode test"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.21.5",
+		"@babel/core": "^7.21.8",
+		"vite": "^4.3.5"
+	},
+	"dependencies": {
+		"@babel/preset-env": "^7.21.5",
+		"axios": "^1.4.0"
+	}
+}
