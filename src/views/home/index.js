@@ -1,14 +1,17 @@
 // import HookManager from './core/index';
-import Comm from '@/utils/dev-tools/Comm';
-import PanelManager from '@/utils/dev-tools/PanelManager';
+// import Comm from '@/utils/dev-tools/Comm';
 
-import eventsHook from './hooks/events';
-import components from './config/components';
-import data from './data';
+// import useInit from './hooks/use-init';
+// import data from './data';
 
-import '@/assets/public';
+import { createHookInstance } from '@/utils/create-app';
+import hook from './core/index';
+import '@/assets/public.css';
+import '@/assets/public2.css';
 
-if (!stage) return;
+// if (!stage);
+// useInit(stage);
+createHookInstance(hook);
 
 // const HM = new Comm({ stage, components });
 // const LM = new PanelManager({ stage, layers });

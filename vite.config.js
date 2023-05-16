@@ -2,13 +2,32 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+
 export default defineConfig({
+	plugins: [
+		cssInjectedByJsPlugin({
+			styleId: 'custom-style',
+			injectCode: (cssCode) => {
+				return `
+				try {
+                    if (typeof document != 'undefined') {
+                        const elementStyle = document.createElement('style');
+                        elementStyle.appendChild(document.createTextNode(${cssCode}));
+						document.head.appendChild(elementStyle);
+                    }
+                } catch (e) {console.error('inject style error', e)}`;
+			},
+		}),
+	],
 	resolve: {
 		alias: {
 			'@': resolve(__dirname, './src'),
 		},
 	},
 	build: {
+		// TODO sourcemap
+		// sourcemap: 'inline',
 		target: 'es2015',
 		lib: {
 			name: 'hook',
