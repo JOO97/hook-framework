@@ -1,10 +1,26 @@
+import components from '../../views/home/config/components';
+import {
+	isFunction,
+	isPromise,
+	isObject,
+	EMPTY_OBJ,
+	hasOwn,
+	reactive,
+	isReservedPrefix,
+	NOOP,
+	isArray,
+} from './utils';
+
+import Comm from '@/utils/dev-tools/Comm';
+
 export const createHookInstance = function (hook) {
 	const instance = {
 		uid: 0,
 		type: hook,
 		proxy: null,
-		ctx: {},
-		data: {},
+		ctx: EMPTY_OBJ,
+		data: EMPTY_OBJ,
+		comm: EMPTY_OBJ,
 		isMounted: false,
 	};
 
@@ -83,27 +99,6 @@ function createDuplicateChecker() {
 		}
 	};
 }
-export const isFunction = (val) => typeof val === 'function';
-export const isPromise = (val) => {
-	return isObject(val) && isFunction(val.then) && isFunction(val.catch);
-};
-export const isObject = (val) => val !== null && typeof val === 'object';
-export const EMPTY_OBJ = {};
-export const hasOwn = (val, key) => hasOwnProperty.call(val, key);
-export function reactive(data) {
-	return new Proxy(data, {
-		get(target, key) {
-			return target[key];
-		},
-		set(target, key, value) {
-			return Reflect.set(target, key, value);
-		},
-	});
-}
-
-export const isReservedPrefix = (key) => key === '_' || key === '$';
-export const NOOP = () => {};
-export const isArray = Array.isArray;
 
 function callHook(hook, instance, type) {
 	callWithAsyncErrorHandling(
@@ -181,7 +176,6 @@ export function resolveMergedOptions(instance) {
 export function applyOptions(instance) {
 	try {
 		const options = resolveMergedOptions(instance);
-		console.log('-options', options);
 		const publicThis = instance.proxy;
 		const ctx = instance.ctx;
 
@@ -244,6 +238,7 @@ export function applyOptions(instance) {
 				console.warn(`data() should return an object.`);
 			} else {
 				instance.data = reactive(data);
+
 				for (const key in data) {
 					checkDuplicateProperties('data', key);
 					if (!isReservedPrefix(key[0])) {

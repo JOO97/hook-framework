@@ -5,7 +5,6 @@ export default class Comm {
 	constructor({ stage, cfg }) {
 		this.stage = stage;
 		this.components = cfg.components;
-
 		// 全局配置
 		this.setting = {
 			// 服务端
