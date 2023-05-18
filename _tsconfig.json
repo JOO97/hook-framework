@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "ES2015",
+		"module": "umd",
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"strict": false,
+		"jsx": "preserve",
+		"sourceMap": false,
+		"resolveJsonModule": false,
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM"],
+		"isolatedModules": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"useDefineForClassFields": true,
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"baseUrl": ".",
+		"allowJs": false,
+		"outDir": "dist"
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"],
+	"compileOnSave": true
+}

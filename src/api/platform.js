@@ -3,18 +3,12 @@ import request from '@/utils/request';
 const BASE_URL = import.meta.env.URL_PLATFORM;
 const basePath = '/platform';
 
+const config = { baseURL };
+
 /**
- * 根据code获取token
- * @param authCode
+ * 获取密钥
  * @returns
  */
-export function getTokenByCode() {
-	return (
-		request.post < IResToken,
-		IRes <
-			IResToken >>
-				(`${baseUrl}/getTokenByDingCode`,
-				{ authCode },
-				{ baseURL: BASE_URL, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-	);
+export function getKeyPair() {
+	return request.get(`${basePath}/login/key_pair`, {}, config);
 }
