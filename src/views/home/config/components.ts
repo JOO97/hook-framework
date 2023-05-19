@@ -341,8 +341,6 @@ export default {
 	态势评估_船舶风险: '@double11-2017_double11-2017-pie-percent_uNA6w',
 	态势评估_执法风险: '@double11-2017_double11-2017-pie-percent_iQHc9',
 
-	提示窗: '@Snxun_datav_sn-cp-toast_gOr40',
-
 	当前天气: 'marquee_v7F8H', //顶部天气
 
 	//网格元素对应弹窗

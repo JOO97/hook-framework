@@ -21,7 +21,7 @@
 		"allowJs": false,
 		"outDir": "dist"
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "src/views/home/config/system.js"],
 	"exclude": ["node_modules"],
 	"compileOnSave": true
 }

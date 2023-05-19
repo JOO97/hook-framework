@@ -18,6 +18,6 @@ export default {
 	},
 
 	initScreen() {
-		console.log('initScreen', initScreen);
+		console.log('initScreen');
 	},
 };

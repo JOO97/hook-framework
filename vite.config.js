@@ -31,7 +31,7 @@ export default defineConfig({
 		target: 'es2015',
 		lib: {
 			name: 'hook',
-			entry: [resolve(__dirname, './src/views/home/index.js')],
+			entry: [resolve(__dirname, './src/views/home/index.ts')],
 			// fileName: (format, entryName) => {
 			// 	console.log(format, entryName);
 			// 	return ;

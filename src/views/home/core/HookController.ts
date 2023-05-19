@@ -1,6 +1,6 @@
 import components from '../config/components';
 import layers from '../config/layers';
-import scenes from '../config/scenes';
+// import scenes from '../config/scenes';
 
 import useRegister from '../hooks/use-register';
 import useProxy from '../hooks/use-proxy';
@@ -17,10 +17,29 @@ function bindMethods(...modules) {
 	});
 }
 
+type TLogic = typeof mainLogic;
+
 export function createHookInstance({ Comm, Widget }) {
-	class HookController extends Comm {
+	class HookController {
+		private _data = {
+			isLoginExpire: false,
+			public: {
+				userInfo: null,
+				hkPlugin: null,
+			},
+			home: {},
+			clue: {},
+		};
+
+		components: TDynamicObj<string>;
+		layers: ILayers;
+		cache: typeof this._data;
+
+		panelManager: any;
+
+		methods: this & TLogic;
+
 		constructor() {
-			super();
 			// 组件
 			this.components = components;
 			// 面板
@@ -28,15 +47,8 @@ export function createHookInstance({ Comm, Widget }) {
 			// 场景
 			// this._sceneController = scenes;
 			// 数据
-			this.cache = useProxy({
-				isLoginExpire: false,
-				public: {
-					userInfo: null,
-					hkPlugin: null,
-				},
-				home: {},
-				clue: {},
-			});
+			this.cache = useProxy(this._data);
+
 			// 方法
 			bindMethods.apply(this, [mainLogic]);
 		}
@@ -48,13 +60,11 @@ export function createHookInstance({ Comm, Widget }) {
 			this.panelManager = new Widget.PanelManager(this, this.layers);
 			// this.sceneManager = new Widget.SceneManager(this, this.scenes).init();
 			this.register();
-
-			const loginStatus = this.checkLogin();
+			const loginStatus = this.methods.checkLogin();
 			this.panelManager.toggleDialog(['登录页'], !loginStatus);
-
 			// 获取token
-			this.getToken(() => {
-				loginStatus && this.initScreen();
+			this.methods.getToken(() => {
+				loginStatus && this.methods.initScreen();
 			});
 		}
 

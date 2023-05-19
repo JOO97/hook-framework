@@ -1,8 +1,13 @@
-export default {
-	compose: {},
+const layers: ILayers = {
+	compose: {
+		态势感知: {
+			delay: 0,
+			layout: { left: [], right: [], top: [], bottom: [] },
+		},
+	},
 	list: {
 		登录页: {
-			type: 'dialog',
+			type: LayerType.Dialog,
 			animation: ['slide-in-top', 'slide-out-top'],
 			position: [0, 0],
 			actions: {},
@@ -17,3 +22,5 @@ export default {
 		},
 	},
 };
+
+export default layers;

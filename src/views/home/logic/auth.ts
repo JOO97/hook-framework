@@ -2,7 +2,6 @@ import JSEncrypt from 'jsencrypt';
 
 import { getToken } from '@/api/tb';
 import { getKeyPair, loginByNameAndPsw } from '@/api/platform';
-import { 登录_tab, 登录_账号密码, 登录_二维码, 登录按钮 } from '../config/components';
 
 export default {
 	/**
@@ -94,3 +93,9 @@ export default {
 		this.afterLoginHandler(true, res.data);
 	},
 };
+
+/**
+ * HookController
+ * index.ts: import home.ts
+ * home.ts:
+ */
