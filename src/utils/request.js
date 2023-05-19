@@ -2,6 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL_TB;
 
+axios.get();
 axios.interceptors.request.use(
 	(config) => {
 		return config;
@@ -14,7 +15,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
 	(response) => {
 		const res = response.data;
-		if (res.code !== 200) {
+		if (res.code != 200) {
 			return Promise.reject(new Error('Error'));
 		}
 		return res;

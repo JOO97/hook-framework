@@ -238,7 +238,7 @@
 	opacity: 1;
 }
 .navimenu .gooey-menu-item {
-	/* background: url('${this.ASSETS_URL}/1656320183465-C7IzAG5B.png') no-repeat; */
+	background: url('@/assets/images/1.jpg') no-repeat;
 	background-size: 100% 100%;
 }
 .navimenu .gooey-menu-item:hover {
